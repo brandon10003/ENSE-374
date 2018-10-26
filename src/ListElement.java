@@ -2,6 +2,7 @@ public class ListElement {
 	
 	
 	public ListElement next;
+        public ListElement prev;
 	//private ListEl
 	private int data;
 	
@@ -9,8 +10,8 @@ public class ListElement {
 	public ListElement()
 	{
 		this.next = null;
+                this.prev = null;
 		this.data = 0;
-		
 	}
 	
 	

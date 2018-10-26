@@ -25,6 +25,7 @@ public class UI {
                 System.out.println("Enter 'g' to get a node");
                 System.out.println("Enter 'd' to delete a node");
                 System.out.println("Enter 'p' to print a list starting from the head");
+                System.out.println("Enter 'r' to print a list starting from the tail");
                 System.out.println("Enter 'q' to quit");
                 
                 in = instream.next().charAt(0);
@@ -36,6 +37,7 @@ public class UI {
                         indata = instream.nextInt();
                         pointer.next.setData(indata);
                         pointer.next.next = new ListElement();
+                        pointer.next.next.prev = pointer.next;
                         pointer.next = pointer.next.next;
                         listsize++;
                             
@@ -66,16 +68,32 @@ public class UI {
                             pointer.next = pointer.next.next;
                         }
                         pointer.next.next = pointer.next.next.next;
+                        pointer.next.next.prev = pointer.next;
                         listsize--;
                         System.out.println("The former link at index " + index + " has been deleted");
                         break;
                     case 'p':
                         System.out.println("The list printed from the head node as is follows");
+                        System.out.println("->null");
                         pointer.next = head;
                         for (int i=0; i<listsize; i++){
                             outdata = pointer.next.getData();
-                            System.out.println(outdata + "->");
+                            System.out.println(outdata + "<->");
                             pointer.next = pointer.next.next;
+                        }
+                        System.out.println("null");
+                        break;
+                    case 'r':
+                        System.out.println("The list printed from the tail node as is follows");
+                        System.out.println("->null");
+                        pointer.next = head;
+                        for (int i=0; i<(listsize-1); i++){
+                            pointer.next = pointer.next.next;
+                        }
+                        for (int i=0; i<listsize; i++){
+                            outdata = pointer.next.getData();
+                            System.out.println(outdata + "<->");
+                            pointer.next = pointer.next.prev;
                         }
                         System.out.println("null");
                         break;
